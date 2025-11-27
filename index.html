@@ -124,7 +124,7 @@
     
     <div class="container">
         <div class="profile-header"><div id="profile-pic"><i class="fa-solid fa-user"></i></div><h1 id="greeting">Welcome!</h1></div>
-        <div class="balance-card"><h3>Your Balance</h3><div class="amount" id="total-earning">$0.000</div></div>
+        <div class="balance-card"><h3>Your Balance</h3><div class="amount" id="total-earning">৳0.000</div></div>
         <div class="stats-grid">
             <div class="stat-item"><i class="fa-solid fa-rectangle-ad bg-icon"></i><div class="icon"><i class="fa-solid fa-rectangle-ad"></i></div><div class="value" id="ad-count">0</div><div class="label">Ads Watched</div></div>
             <div class="stat-item"><i class="fa-solid fa-calendar-day bg-icon"></i><div class="icon"><i class="fa-solid fa-calendar-day"></i></div><div class="value" id="ads-today-count">0 / 15</div><div class="label">Today's Ads</div></div>
@@ -179,8 +179,8 @@
             TELEGRAM_CHANNEL_LINK: 'https://t.me/akhridoy006',
             ADMIN_SUPPORT_LINK: 'https://t.me/Meghla006',
             MONETAG_ZONE_ID: '10201899',
-            AD_REWARD: 0.05,
-            DAILY_AD_LIMIT: 50,
+            AD_REWARD: 5,
+            DAILY_AD_LIMIT: 20,
             MINIMUM_WITHDRAWAL: 5,
             COOLDOWN_MINUTES: 30,
             // নতুন: উইথড্র মেথডগুলো এখানে যোগ করা হয়েছে
@@ -206,7 +206,7 @@
             ],
             welcomeNotice: {
                 title: "Welcome!",
-                message: `Please follow the rules to ensure you receive your payment.\n\n💰 Reward per Ad: $0.001\n💝 After watching 15 ads, there is a 30-minute break.\n✅ 100% Payment Guarantee\n💸 Withdraw via Binance UID or Email\n🔥 Minimum withdrawal is only $0.10\n\n⛔ IMPORTANT RULES ⛔\n- Use mobile data for tasks. Do not use WiFi.\n- After each break, change your IP address. Simply turn Airplane Mode ON and then OFF.\n- Do NOT use any free or paid VPN.\n- Watch the complete guide video on our Telegram channel before starting.\n\nFollowing these rules is mandatory to get paid. Join our Telegram channel for updates and support! ✅`
+                message: `⚠️অনুগ্রহ করে আপনার পেমেন্ট নিশ্চিত করার জন্য নিম্নলিখিত নিয়মগুলি মেনে চলুন।⚠️\n\n🔸 প্রতিটি বিজ্ঞাপনের জন্য পুরস্কার: ৳৫ টাকা💸\n🔸 ২০টি বিজ্ঞাপন দেখার পর ২০ মিনিটের বিরতি থাকবে।✅\n🔸 ১০০% পেমেন্টের নিশ্চয়তা💲\n🔸 Binance UID অথবা ইমেলের মাধ্যমে উত্তোলন করুন✅\n🔥 সর্বনিম্ন উত্তোলন মাত্র ৳১০০০ টাকা💲\n\n⛔ গুরুত্বপূর্ণ নিয়মাবলী ⛔\n🔺🔹- কাজের জন্য মোবাইল ডেটা ব্যবহার করুন। ওয়াইফাই ব্যবহার করবেন না।\n🔹- প্রতিটি বিরতির পরে, আপনার আইপি অ্যাড্রেস পরিবর্তন করুন। কেবল এয়ারপ্লেন মোড (Airplane Mode) চালু করে আবার বন্ধ করুন।\n🔹- কোনো ফ্রি বা পেইড ভিপিএন (VPN) ব্যবহার করবেন না।\n🔹- শুরু করার আগে আমাদের টেলিগ্রাম চ্যানেলে সম্পূর্ণ নির্দেশিকা ভিডিওটি দেখুন।\n\n🌐পেমেন্ট পাওয়ার জন্য এই নিয়মগুলি অনুসরণ করা বাধ্যতামূলক। আপডেট এবং সহায়তার জন্য আমাদের টেলিগ্রাম চ্যানেলে যোগ দিন! 🌐`
             }
         };
 
@@ -258,8 +258,7 @@
             allDOMElements.totalEarningEl.textContent = `$${state.totalEarning.toFixed(3)}`;
             allDOMElements.adCountEl.textContent = state.adCount;
             allDOMElements.adsTodayCountEl.textContent = `${state.adsWatchedToday} / ${config.DAILY_AD_LIMIT}`;
-            allDOMElements.minWithdrawText.textContent = `Minimum withdrawal is $${config.MINIMUM_WITHDRAWAL.toFixed(2)}
-            1$ = 100 Taka.`;
+            allDOMElements.minWithdrawText.textContent = `সর্বনিম্ন উত্তোলনের পরিমাণ $${config.MINIMUM_WITHDRAWAL.toFixed(2)} টাকা 💲`;
             
             clearInterval(cooldownInterval);
             const watchAdButton = allDOMElements.watchAdButton;
@@ -328,7 +327,7 @@
                     const pendingUntil = new Date().getTime() + (2 * 60 * 60 * 1000); // 2 hours from now
                     state.withdrawalHistory.unshift({ method, number: accountNumber, amount, date: new Date().toISOString(), status: 'Pending', pendingUntil });
                     saveState(); updateUI(); closeModal('withdrawModal'); withdrawForm.reset();
-                    safeTgAlert('Your withdrawal request has been sent and is now pending. It will be processed within 2 hours.');
+                    safeTgAlert('🧑‍💻 আপনার উত্তোলন সফল হয়েছে এবং বর্তমানে pending অবস্থায় রয়েছে।✅২ ঘণ্টার মধ্যে আপনার উত্তোলনকৃত টাকা আপনার একাউন্ট এ পাঠানো হবে 💸');
                     safeTgAction(tg => tg.HapticFeedback.notificationOccurred('success'));
                 } else { throw new Error(JSON.stringify(results)); }
             } catch (error) { console.error("Withdrawal Error:", error); safeTgAlert('Failed to send your request. Please try again later.'); } 
@@ -421,7 +420,7 @@
             const referrerRef = firebaseDb.ref(`users/${referrerId}/referrals`);
             await referrerRef.transaction((currentCount) => (currentCount || 0) + 1);
 
-            const message = `🎉 Congratulations! User ${currentUser.first_name} (@${currentUser.username}) joined using your link. You will receive your bonus next time you open the app.`;
+            const message = `🎉 অভিনন্দন! ব্যবহারকারী :- ${currentUser.first_name} (@${currentUser.username}) আপনার লিংক ব্যবহার করে জয়েন করেছে ।✅ পুনরায় অ্যাপ এ প্রবেশ করলেই আপনি রেফার বোনাস পেয়ে যাবেন।💲`;
             await fetch(`https://api.telegram.org/bot${config.BOT_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: referrerId, text: message }) });
         }
 
