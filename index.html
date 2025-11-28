@@ -154,8 +154,8 @@
                 <select id="method" name="method" required>
                     <option value="" disabled selected>Select Payment Method</option>
                 </select>
-                <input type="text" id="account-number" placeholder="Binance UID or Number" required>
-                <input type="number" step="0.001" id="withdraw-amount" placeholder="Amount in USD" required>
+                <input type="text" id="account-number" placeholder="Account Number" required>
+                <input type="number" step="0.001" id="withdraw-amount" placeholder="Amount in BDT" required>
                 <button type="submit" class="action-button" id="withdraw-submit-button">
                     <span class="button-text">Submit Request</span>
                     <div class="spinner" style="display: none;"></div>
@@ -168,7 +168,7 @@
     <div id="historyModal" class="modal"><div class="modal-content"><span class="close-button" onclick="closeModal('historyModal')">&times;</span><h3 class="card-title">Withdrawal History</h3><div id="history-list"></div></div></div>
     <div id="inviteModal" class="modal"><div class="modal-content"><span class="close-button" onclick="closeModal('inviteModal')">&times;</span><h3 class="card-title">Invite Friends</h3><p>🌐আপনার বন্ধুদের সাথে আপনার রেফারেল লিঙ্কটি শেয়ার করুন এবং একসাথে উপার্জন করুন। প্রতিটি সফল রেফারেলের জন্য আপনি একটি পুরস্কার পাবেন।💲 </p><button class="action-button" id="copy-link-button"><i class="fa-solid fa-copy"></i><span>Copy Link</span></button><button class="action-button secondary-button" id="share-link-button"><i class="fa-solid fa-share-nodes"></i><span>Share Link</span></button></div></div>
     <div id="bonusTasksModal" class="modal"><div class="modal-content"><span class="close-button" onclick="closeModal('bonusTasksModal')">&times;</span><h3 class="card-title">Bonus Tasks</h3><p style="text-align: center; margin-bottom: 20px;">Complete these one-time tasks to earn extra rewards!</p><div id="bonus-tasks-list"></div></div></div>
-    <div id="multiAccountModal" class="modal"><div class="modal-content"><h3 class="card-title" style="text-align:center;">⚠️ Warning</h3><p>Multiple accounts are not allowed. Only one Telegram account can be used on this device. Please use your original account to continue.</p></div></div>
+    <div id="multiAccountModal" class="modal"><div class="modal-content"><h3 class="card-title" style="text-align:center;">⚠️ Warning</h3><p>🆘একাধিক অ্যাকাউন্ট অনুমোদিত নয়। এই ডিভাইসে শুধুমাত্র একটি টেলিগ্রাম অ্যাকাউন্ট ব্যবহার করা যেতে পারে। চালিয়ে যেতে অনুগ্রহ করে আপনার মূল অ্যাকাউন্টটি ব্যবহার করুন।✅</p></div></div>
 
     <script>
         // --- CONFIGURATION (MERGED) ---
@@ -181,13 +181,13 @@
             MONETAG_ZONE_ID: '10201899',
             AD_REWARD: 5,
             DAILY_AD_LIMIT: 20,
-            MINIMUM_WITHDRAWAL: 5,
+            MINIMUM_WITHDRAWAL: 1000,
             COOLDOWN_MINUTES: 30,
             // নতুন: উইথড্র মেথডগুলো এখানে যোগ করা হয়েছে
             withdrawalMethods: [
-                'Binance UID',
                 'Bkash',
-                'Nagad'
+                'Nagad',
+                'Rocket'
             ],
             firebase: {
                 apiKey: "AIzaSyAiY6y4cEoUdHxsAoRTVP6MknVPg-o6QWQ",
@@ -278,11 +278,11 @@
             updateChart();
         }
         
-        async function watchAd() {
-            if (state.lastUsedIp && !state.cooldownUntil) {
-                 const newIp = await getIpAddress();
-                 if (newIp === state.lastUsedIp) { safeTgAlert('Please change your IP address to start the next round. Turn airplane mode on and off.'); return; } 
-                 else { state.lastUsedIp = null; saveState(); }
+        /async function watchAd() {
+          //  if (state.lastUsedIp && !state.cooldownUntil) {
+           //      const newIp = await getIpAddress();
+           //      if (newIp === state.lastUsedIp) { safeTgAlert('Please change your IP address to start the next round. Turn airplane mode on and off.'); return; } 
+           //      else { state.lastUsedIp = null; saveState(); }
             }
             allDOMElements.adLoaderOverlay.style.display = 'flex';
             const adFunction = window[`show_${config.MONETAG_ZONE_ID}`];
