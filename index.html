@@ -255,10 +255,10 @@
         let cooldownInterval;
         function updateUI() {
             if (state.cooldownUntil && new Date() >= new Date(state.cooldownUntil)) { state.cooldownUntil = null; state.adsWatchedToday = 0; saveState(); }
-            allDOMElements.totalEarningEl.textContent = `$${state.totalEarning.toFixed(3)}`;
+            allDOMElements.totalEarningEl.textContent = `৳${state.totalEarning.toFixed(3)}`;
             allDOMElements.adCountEl.textContent = state.adCount;
             allDOMElements.adsTodayCountEl.textContent = `${state.adsWatchedToday} / ${config.DAILY_AD_LIMIT}`;
-            allDOMElements.minWithdrawText.textContent = `সর্বনিম্ন উত্তোলনের পরিমাণ $${config.MINIMUM_WITHDRAWAL.toFixed(2)} টাকা 💲`;
+            allDOMElements.minWithdrawText.textContent = `সর্বনিম্ন উত্তোলনের পরিমাণ ${config.MINIMUM_WITHDRAWAL.toFixed(2)} টাকা 💲`;
             
             clearInterval(cooldownInterval);
             const watchAdButton = allDOMElements.watchAdButton;
