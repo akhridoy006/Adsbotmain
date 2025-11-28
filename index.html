@@ -258,7 +258,7 @@
             allDOMElements.totalEarningEl.textContent = `৳${state.totalEarning.toFixed(3)}`;
             allDOMElements.adCountEl.textContent = state.adCount;
             allDOMElements.adsTodayCountEl.textContent = `${state.adsWatchedToday} / ${config.DAILY_AD_LIMIT}`;
-            allDOMElements.minWithdrawText.textContent = `সর্বনিম্ন উত্তোলনের পরিমাণ ${config.MINIMUM_WITHDRAWAL.toFixed(2)} টাকা 💲`;
+            allDOMElements.minWithdrawText.textContent = `সর্বনিম্ন উত্তোলনের পরিমাণ ৳${config.MINIMUM_WITHDRAWAL.toFixed(2)} টাকা 💲`;
             
             clearInterval(cooldownInterval);
             const watchAdButton = allDOMElements.watchAdButton;
@@ -357,7 +357,7 @@
             historyListEl.innerHTML = state.withdrawalHistory.map(item => `
                 <div class="history-item">
                     <div class="history-details"><span class="method-number">${escapeHTML(item.method)} - ${escapeHTML(item.number)}</span><span class="date">${new Date(item.date).toLocaleString()}</span></div>
-                    <div class="history-amount"><span>$${item.amount.toFixed(3)}</span><div class="history-status ${item.status.toLowerCase()}">${item.status}</div></div>
+                    <div class="history-amount"><span>৳${item.amount.toFixed(3)}</span><div class="history-status ${item.status.toLowerCase()}">${item.status}</div></div>
                 </div>`).join('');
         }
 
@@ -383,7 +383,7 @@
                 state.totalEarning += task.reward;
                 state.completedBonusTasks.push(task.id);
                 saveState(); updateUI(); button.textContent = 'Completed';
-                safeTgAlert(`Bonus of $${task.reward.toFixed(3)} added successfully!`);
+                safeTgAlert(`Bonus of ৳${task.reward.toFixed(3)} added successfully!`);
                 safeTgAction(tg => tg.HapticFeedback.notificationOccurred('success'));
             }, task.duration * 1000);
         }
