@@ -278,11 +278,11 @@
             updateChart();
         }
         
-        //async function watchAd() {
-          //  if (state.lastUsedIp && !state.cooldownUntil) {
-           //      const newIp = await getIpAddress();
-           //      if (newIp === state.lastUsedIp) { safeTgAlert('Please change your IP address to start the next round. Turn airplane mode on and off.'); return; } 
-           //      else { state.lastUsedIp = null; saveState(); }
+        async function watchAd() {
+            if (state.lastUsedIp && !state.cooldownUntil) {
+                 const newIp = await getIpAddress();
+           if (newIp === state.lastUsedIp) { safeTgAlert('Please change your IP address to start the next round. Turn airplane mode on and off.'); return; } 
+                 else { state.lastUsedIp = null; saveState(); }
             }
             allDOMElements.adLoaderOverlay.style.display = 'flex';
             const adFunction = window[`show_${config.MONETAG_ZONE_ID}`];
